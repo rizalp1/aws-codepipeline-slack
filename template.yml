@@ -7,10 +7,10 @@ Parameters:
     MinLength: 1
     Type: String
     NoEcho: True
-  SlackChannel:
+  SlackChannelID:
     Type: String
     MinLength: 1
-    Default: builds
+    Default: C04PF44G2UW
   SlackBotName:
     MinLength: 1
     Type: String
@@ -24,7 +24,7 @@ Resources:
   Notifier:
     Type: AWS::Serverless::Function
     Properties:
-      Runtime: python3.6
+      Runtime: python3.10
       Timeout: 30
       MemorySize: 256
       CodeUri: src/
@@ -35,7 +35,7 @@ Resources:
           SLACK_BOT_TOKEN: !Ref SlackBotUserOAuthAccessToken
           SLACK_BOT_NAME: !Ref SlackBotName
           SLACK_BOT_ICON: !Ref SlackBotIcon
-          SLACK_CHANNEL: !Ref SlackChannel
+          SLACK_CHANNEL_ID: !Ref SlackChannelID
 
       Policies:
         - AWSLambdaBasicExecutionRole
